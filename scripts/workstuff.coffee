@@ -3,36 +3,20 @@
 #
 # Commands:
 #   hubot wiki - Reply with URL for the wiki 
-#   hubot android build server - Reply with URL for Android Build Server
-#   hubot iphone config - Reply with URL for iPhone config
-#   hubot android config - Reply with URL for Android config
-#   hubot live stream - Reply with URL for live stream
+#   hubot jita - Reply with URL for the board 
 #   hubot service desk - Reply with contact details for the DC service desk
-
+#   hubot I'm being asked about Sky News - Tells you what to do
 
 module.exports = (robot) ->
   robot.respond /wiki$/i, (msg) ->
-    msg.send "http://wiki.scoop.bskyb.com/wiki/Main_Page"
+    msg.send "https://developer.bskyb.com/wiki/pages/viewpage.action?spaceKey=IOCS&title=OTT+Client+Services+Home#"
+
+  robot.respond /jira$/i, (msg) ->
+    msg.send "https://developer.bskyb.com/jira/secure/RapidBoard.jspa?rapidView=439&view=detail&selectedIssue=IOCS-75"
 
 
-  robot.respond /android build server$/i, (msg) ->
-    msg.send "http://mobile-build.scoop.bskyb.com/"
-
-
-  robot.respond /iphone config$/i, (msg) ->
-    msg.send "http://app.news.sky.com/ios/config.json"
-
-
-  robot.respond /android config$/i, (msg) ->
-    msg.send "http://app.news.sky.com/android/config.json"
-
-
-  robot.respond /live stream$/i, (msg) ->
-    msg.send "http://skydvn-ssmtv-mobile-prod.mobile-tv.sky.com/ssmtv-skynews/1404/sn.m3u8"
-
-
-  robot.respond /service desk$/i, (msg) ->
-    msg.send "Business hours: 0113 243 2973, dcservicedesk@sky.uk, Out of Hours: 0113 243 2973" 
+  robot.respond /I'm being asked about Sky News$/i, (msg) ->
+    msg.send "Tell them to contact the Service Desk! Business hours: 0113 243 2973, dcservicedesk@sky.uk, Out of Hours: 0113 243 2973" 
 
   banter = [
     "You mean that guy who sold out and went to Gravy town?",
