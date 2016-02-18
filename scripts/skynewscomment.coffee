@@ -15,6 +15,6 @@
 
 module.exports = (robot) ->
   robot.respond /sn comment/i, (msg) ->
-    msg.http("https://powerful-falls-8724.herokuapp.com/")
+    msg.http("https://sky-news-comment.herokuapp.com/")
       .get() (err, res, body) ->
         msg.send "_*'" + JSON.parse(body).comment + "'*_ - " + JSON.parse(body).numberOfLikes + " likes " + JSON.parse(body).storyTitle 
