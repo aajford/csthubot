@@ -3,7 +3,7 @@
 #
 # Commands:
 #   hubot wiki - Reply with URL for the wiki 
-#   hubot jita - Reply with URL for the board 
+#   hubot jira - Reply with URL for the board 
 #   hubot service desk - Reply with contact details for the DC service desk
 #   hubot I'm being asked about Sky News - Tells you what to do
 
