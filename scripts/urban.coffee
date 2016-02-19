@@ -22,6 +22,7 @@
 module.exports = (robot) ->
 
   robot.respond /(urban)( define)?( example)?( me)? (.*)/i, (msg) ->
+    robot.adapter.typing and robot.adapter.typing(msg.envelope)
     urbanDict msg, msg.match[5], (found, entry, sounds) ->
       if !found
         msg.send "\"#{msg.match[5]}\" not found"
