@@ -14,9 +14,8 @@ module.exports = (robot) ->
   robot.respond /jira$/i, (msg) ->
     msg.send "https://developer.bskyb.com/jira/secure/RapidBoard.jspa?rapidView=439&view=detail&selectedIssue=IOCS-75"
 
-
-  robot.respond /I'm being asked about Sky News$/i, (msg) ->
-    msg.send "Tell them to contact the Service Desk! Business hours: 0113 243 2973, dcservicedesk@sky.uk, Out of Hours: 0113 243 2973" 
+  robot.hear /.*(Sky News).*/i, (msg) ->
+  	msg.send "Enough Already! Tell them to contact the Service Desk and it'll be fixed next year. Business hours: 0113 243 2973, dcservicedesk@sky.uk, Out of Hours: 0113 243 2973" 
 
   banter = [
     "You mean that guy who sold out and went to Gravy town?",
