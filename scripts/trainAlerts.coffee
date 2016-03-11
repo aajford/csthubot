@@ -13,11 +13,9 @@
 #   HUBOT_TWITTER_ACCESS_TOKEN_SECRET
 #
 # Commands:
-#   hubot trains tweet - Show last tweet from SWT
 #   hubot train alerts help - See a help document explaining how to use.
 #   hubot create train alert - Creates an alert when the trains are disrupted in this channel
-#   hubot list train alerts - See all alerts for this room
-#   hubot list train alerts in every channel - See all standups in every room
+#   hubot train alerts status - displays status of alerts
 #   hubot delete all train alerts - Deletes all train alerts for this room.
 #
 # Author:
@@ -45,18 +43,17 @@ module.exports = (robot) ->
 
     twit = undefined
 
-    # robot.respond /(trains)\s+(tweet)\s?(\d?)/i, (msg) ->
     unless config.consumer_key
-      msg.send "Please set the HUBOT_TWITTER_CONSUMER_KEY environment variable."
+      console.log("Please set the HUBOT_TWITTER_CONSUMER_KEY environment variable.")
       return
     unless config.consumer_secret
-      msg.send "Please set the HUBOT_TWITTER_CONSUMER_SECRET environment variable."
+      console.log ("Please set the HUBOT_TWITTER_CONSUMER_SECRET environment variable.")
       return
     unless config.access_token
-      msg.send "Please set the HUBOT_TWITTER_ACCESS_TOKEN environment variable."
+      console.log("Please set the HUBOT_TWITTER_ACCESS_TOKEN environment variable.")
       return
     unless config.access_token_secret
-      msg.send "Please set the HUBOT_TWITTER_ACCESS_TOKEN_SECRET environment variable."
+      console.log("Please set the HUBOT_TWITTER_ACCESS_TOKEN_SECRET environment variable.")
       return
 
     unless twit
@@ -155,10 +152,11 @@ module.exports = (robot) ->
 
   # Check for alerts that need to be fired, once every 2 minutes
 
-  new cronJob('1 7-18 * * * 1-5', checkAlerts, null, true)
+  new cronJob('*/1 7-18 * * * 1-5', checkAlerts, null, true)
+  new cronJob('*/1 7-18 * * * 1-5', alertShouldFire, null, true)
 
   robot.respond /delete all train alerts/i, (msg) ->
-    alertsCleared = clearAllalertsForRoom(findRoom(msg))
+    alertsCleared = clearAllAlertsForRoom(findRoom(msg))
     msg.send 'Deleted ' + alertsCleared + ' alert' + (if alertsCleared == 1 then '' else 's') + '. No more alerts for you.'
     return
   
