@@ -102,6 +102,7 @@ module.exports = (robot) ->
 
   checkAlerts = ->
     alerts = getAlerts()
+    console.log(alerts)
     _.chain(alerts).filter(alertShouldFire).pluck('room').each doAlert
     return
 
@@ -172,18 +173,7 @@ module.exports = (robot) ->
     if alerts.length == 0
       msg.send 'Well this is awkward. You haven\'t got any alerts set in this channel :-/'
     else
-      alertsText = [ 'Yup, there\'s an alert set for '  ].concat(_.map(alerts, (alert) ->
-        'Channel: ' + alert.room 
-      ))
-      msg.send alertsText.join('\n')
-    return
-
-  robot.respond /list train alerts in every channel/i, (msg) ->
-    alerts = getAlerts()
-    if alerts.length == 0
-      msg.send 'No, because there aren\'t any.'
-    else
-      alertsText = [ 'Here\'s the alerts for every channel:' ].concat(_.map(alerts, (alert) ->
+      alertsText = [ 'There\'s alerts set for '  ].concat(_.map(alerts, (alert) ->
         'Channel: ' + alert.room 
       ))
       msg.send alertsText.join('\n')
