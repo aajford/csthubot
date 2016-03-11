@@ -77,6 +77,7 @@ module.exports = (robot) ->
 
       #Check to see if any of a list of stations is mentioned in the latest tweet
       tweetText = _.unescape(_.last(reply)['text'])
+      console.log(tweetText)
       if checkTweet()
         return true
       else 
@@ -166,12 +167,13 @@ module.exports = (robot) ->
     msg.send 'Ok, from now on I\'ll alert this channel when I think there\'s train disruption - any time between 7am and 6pm on weekdays'
     return
 
-  robot.respond /list train alerts$/i, (msg) ->
+  robot.respond /train alerts status$/i, (msg) ->
     alerts = getAlertsForRoom(findRoom(msg))
     if alerts.length == 0
       msg.send 'Well this is awkward. You haven\'t got any alerts set in this channel :-/'
     else
-      alertsText = [ 'Here\'s the alerts for this channel:' ].concat(_.map(alerts, (alert) ->
+      alertsText = [ 'Yup, there\'s an alert set for '  ].concat(_.map(alerts, (alert) ->
+        'Channel: ' + alert.room 
       ))
       msg.send alertsText.join('\n')
     return
