@@ -110,7 +110,7 @@ module.exports = (robot) ->
   doAlert = (room) ->
 
     message =  "@Channel - Train alert: \"" + _.unescape(_.last(reply)['text']) + "\" - https://twitter.com/NRE_SWT" if reply[0]['text']
-    robot.messageRoom 'Shell', message
+    robot.messageRoom room, message
     return
 
   # Finds the room for most adaptors
@@ -168,7 +168,6 @@ module.exports = (robot) ->
 
   robot.respond /list train alerts$/i, (msg) ->
     alerts = getAlertsForRoom(findRoom(msg))
-    msg.send alerts
     if alerts.length == 0
       msg.send 'Well this is awkward. You haven\'t got any alerts set in this channel :-/'
     else
