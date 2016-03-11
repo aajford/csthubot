@@ -168,6 +168,7 @@ module.exports = (robot) ->
 
   robot.respond /list train alerts$/i, (msg) ->
     alerts = getAlertsForRoom(findRoom(msg))
+    msg.send alerts
     if alerts.length == 0
       msg.send 'Well this is awkward. You haven\'t got any alerts set in this channel :-/'
     else
