@@ -13,6 +13,12 @@ module.exports = (robot) ->
 
   robot.respond /jira$/i, (msg) ->
     msg.send "https://developer.bskyb.com/jira/secure/RapidBoard.jspa?rapidView=439&view=detail&selectedIssue=IOCS-75"
+    
+  robot.respond /pcms$/i, (msg) ->
+    msg.send "http://beta.pcms.awscsi.com/editor/#/"
+    
+  robot.respond /webmail$/i, (msg) ->
+    msg.send "http://mail.bskyb.com"
 
   robot.hear /.*(Sky News).*/i, (msg) ->
   	msg.send "Enough Already! Tell them to contact the Service Desk and it'll be fixed next year. Business hours: 0113 243 2973, dcservicedesk@sky.uk, Out of Hours: 0113 243 2973" 
