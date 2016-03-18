@@ -20,7 +20,7 @@ module.exports = (robot) ->
   	robot.adapter.typing and robot.adapter.typing(msg.envelope)
 
   	# request and save menu
-
+  	# URL = http://www.foodatsky.com//files/nhc4-canteen-menu-176.pdf
 
   	# Parse menu
 
