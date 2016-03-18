@@ -33,6 +33,7 @@
     "hubot-vine": "^0.1.1",
     "jsdom": "3.x.x",
     "lodash": "3.10.1 ",
+    "pdf-text": "^0.4.0",
     "soupselect": "0.2.0",
     "twit": "^2.2.3",
     "underscore": "1.4.x"
