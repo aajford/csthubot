@@ -65,10 +65,7 @@ module.exports = (robot) ->
   robot.hear /.*(Leeds).*/i, (msg) ->
     msg.send "GRAAAAAYVVVEEEH"
     
-  robot.hear /.*(late ).*/i, (msg) ->
-    msg.send msg.random lateComments
-    
-  robot.hear /.*( late).*/i, (msg) ->
+  robot.hear /.*( late ).*/i, (msg) ->
     msg.send msg.random lateComments
 
 
