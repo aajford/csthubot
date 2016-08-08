@@ -81,11 +81,11 @@ module.exports = (robot) ->
       res.on 'end', () ->
 
         # Parse html
-        match = data.match(/<div id="content">([^<]+)./i)
+        match = data.match /<div id="content">([^<]+)./i
         textBody = match[0]
         textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
-        theFact1 = textBodyNoWhite.replace /<[^>]*>/g , ""
-        theFact2 = theFact1.replace /[\W_]+/g , " "
+        theFact1 = textBodyNoWhite.replace /<[^>]*>/g, ""
+        theFact2 = theFact1.replace /[\W_]+/g," "
         message = 'Fact of the day: '+ theFact2
         robot.messageRoom room, message
       return
