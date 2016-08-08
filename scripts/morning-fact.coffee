@@ -82,10 +82,11 @@ module.exports = (robot) ->
 
         # Parse html
         match = data.match(/<div id="content">([^<]+)./i)
-        textBody = match[1]
+        textBody = match[0]
         textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
-        theFact = textBodyNoWhite.replace /<[^>]*>/g , ""
-        message = 'Fact of the day: '+ theFact
+        theFact1 = textBodyNoWhite.replace /<[^>]*>/g , ""
+        theFact2 = theFact1.replace /[\W_]+/g , " "
+        message = 'Fact of the day: '+ theFact2
         robot.messageRoom room, message
       return
 
@@ -162,7 +163,7 @@ module.exports = (robot) ->
     if Facts.length == 0
       msg.send 'Well this is awkward. You haven\'t got any fact alerts set :-/'
     else
-      FactsText = [ 'Here\'s your Facts:' ].concat(_.map(Facts, (Fact) ->
+      FactsText = [ 'Here are your fact times:' ].concat(_.map(Facts, (Fact) ->
         if Fact.utc
           Fact.time + ' UTC' + Fact.utc
         else
