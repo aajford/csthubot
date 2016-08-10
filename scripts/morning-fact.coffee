@@ -32,7 +32,7 @@ module.exports = (robot) ->
 
 
 
-  FactShouldFire = (Fact) ->
+  factShouldFire = (Fact) ->
     FactTime = Fact.time
     utc = Fact.utc
     now = new Date
@@ -63,7 +63,6 @@ module.exports = (robot) ->
     robot.brain.get('Facts') or []
 
   # Returns just Facts for a given room.
-
   getFactsForRoom = (room) ->
     _.where getFacts(), room: room
 
@@ -71,26 +70,28 @@ module.exports = (robot) ->
 
   checkFacts = ->
     Facts = getFacts()
-    _.chain(Facts).filter(FactShouldFire).pluck('room').each getFact
+    _.chain(Facts).filter(factShouldFire).pluck('room').each doFact
     return
 
+  doFact = (room) ->
+  	facts = getFactsForRoom(room)
+  	if facts.length > 0
+  		# theFact = facts.filter(factShouldFire)
+    	http.get ('http://www.unkno.com/'), (res) ->
+      	data = ''
+      	res.on 'data', (chunk) ->
+        	data += chunk.toString()
+      	res.on 'end', () ->
 
-  getFact = (msg, query, callback, room) ->
-    http.get ('http://www.unkno.com/'), (res) ->
-      data = ''
-      res.on 'data', (chunk) ->
-        data += chunk.toString()
-      res.on 'end', () ->
-
-        # Parse html
-        if data.match(/<div id="content">([^<]+)./i)
-	        matchedText = data.match(/<div id="content">([^<]+)./i)
-	        textBody = matchedText[0]
-	        textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
-	        theFact1 = textBodyNoWhite.replace /<[^.]*>/g, ""
-	        theFact2 = theFact1.replace /[^a-zA-Z0-9.,:;_!"'\s\-\n\r\t]+/g,""
-	        message = 'Fact of the day: '+ theFact2
-	        robot.messageRoom room, message 
+	        # Parse html
+	        if data.match(/<div id="content">([^<]+)./i)
+		        matchedText = data.match(/<div id="content">([^<]+)./i)
+		        textBody = matchedText[0]
+		        textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
+		        theFact1 = textBodyNoWhite.replace /<[^.]*>/g, ""
+		        theFact2 = theFact1.replace /[^a-zA-Z0-9.,:;_!\"\'\`\s\-\n\r\t]+/g,""
+		        message = 'Fact of the day: '+ theFact2
+		        robot.messageRoom room, message 
     return
 
   findRoom = (msg) ->
