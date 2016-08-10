@@ -6,9 +6,9 @@
   "description": "Everything is awesome",
   "dependencies": {
     "cleverbot-node": "^0.2.1",
-    "coffee-script": "1.8.0",
+    "coffee-script": "^1.8.0",
     "cron": "^1.1.0",
-    "htmlparser": "1.7.6",
+    "htmlparser": "^1.7.6",
     "hubot": "^2.17.0",
     "hubot-business-cat": "^1.5.0",
     "hubot-diagnostics": "0.0.1",
@@ -16,7 +16,7 @@
     "hubot-fliptable": ">= 0.0.0",
     "hubot-google-images": "^0.2.5",
     "hubot-google-translate": "^0.2.0",
-    "hubot-help": "^0.1.2",
+    "hubot-help": ">=0.0.0",
     "hubot-humanity": "^0.1.3",
     "hubot-insultos": "^1.0.1",
     "hubot-maps": "0.0.2",
@@ -27,14 +27,14 @@
     "hubot-shipit": "^0.2.0",
     "hubot-shy": "^1.0.2",
     "hubot-slack": "https://github.com/aajford/hubot-slack/tarball/master",
-    "hubot-standup-alarm": "0.0.7",
+    "hubot-standup-alarm": ">=0.0.7",
     "hubot-suggest": "0.0.1",
     "hubot-vine": "^0.1.1",
-    "jsdom": "3.x.x",
-    "lodash": "3.10.1 ",
+    "jsdom": "^9.x.x",
+    "lodash": "^4.10.1 ",
     "soupselect": "0.2.0",
     "twit": "^2.2.3",
-    "underscore": "1.4.x"
+    "underscore": "^1.4.x"
   },
   "engines": {
     "node": "0.10.x"

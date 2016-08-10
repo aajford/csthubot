@@ -87,8 +87,8 @@ module.exports = (robot) ->
 	        matchedText = data.match(/<div id="content">([^<]+)./i)
 	        textBody = matchedText[0]
 	        textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
-	        theFact1 = textBodyNoWhite.replace /<[^>]*>/g, ""
-	        theFact2 = theFact1.replace /[\W_]+/g," "
+	        theFact1 = textBodyNoWhite.replace /<[^.]*>/g, ""
+	        theFact2 = theFact1.replace /[^a-zA-Z0-9.,:;_!"'\s\-\n\r\t]+/g,""
 	        message = 'Fact of the day: '+ theFact2
 	        robot.messageRoom room, message 
     return
