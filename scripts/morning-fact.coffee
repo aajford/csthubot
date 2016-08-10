@@ -30,6 +30,8 @@ module.exports = (robot) ->
   # Compares current time to the time of the Fact
   # to see if it should be fired.
 
+
+
   FactShouldFire = (Fact) ->
     FactTime = Fact.time
     utc = Fact.utc
