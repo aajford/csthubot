@@ -89,7 +89,7 @@ module.exports = (robot) ->
 		        textBody = matchedText[0]
 		        textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
 		        theFact1 = textBodyNoWhite.replace /<[^.]*>/g, ""
-		        theFact2 = theFact1.replace /[^a-zA-Z0-9.,:;_!\"\'\`\s\-\n\r\t]+/g,""
+		        theFact2 = theFact1.replace /[^a-zA-Z0-9.,:;_!"'`\s]+/g,""
 		        message = 'Fact of the day: '+ theFact2
 		        robot.messageRoom room, message 
     return
