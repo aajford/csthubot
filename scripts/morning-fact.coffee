@@ -84,14 +84,15 @@ module.exports = (robot) ->
       	res.on 'end', () ->
 
 	        # Parse html
-	        if data.match(/<div id="content">([^<]+)./i)
+	        if data.match(/<div id="content">\n([^<]+)./i)
 		        matchedText = data.match(/<div id="content">([^<]+)./i)
 		        textBody = matchedText[0]
 		        textBodyNoWhite = textBody.replace /^\s+|\s+$/g, ""
 		        theFact1 = textBodyNoWhite.replace /<[^.]*>/g, ""
 		        theFact2 = theFact1.replace /[^a-zA-Z0-9.,:;_!"'`\s]+/g,""
-		        message = 'Fact of the day: '+ theFact2
-		        robot.messageRoom room, message 
+		        theFact3 = theFact2.replace /quot;/, "\""
+		        message = 'Fact of the day: '+ theFact3
+		        robot.messageRoom room, message
     return
 
   findRoom = (msg) ->
@@ -104,7 +105,7 @@ module.exports = (robot) ->
 
   saveFact = (room, time, utc) ->
     Facts = getFacts()
-    newFact = 
+    newFact =
       time: time
       room: room
       utc: utc
@@ -133,7 +134,7 @@ module.exports = (robot) ->
     Facts.length - (FactsToKeep.length)
 
   'use strict'
- 
+
   # Check for Facts that need to be fired, once a minute
   # Monday to Friday.
   new cronJob('1 * * * * 1-5', checkFacts, null, true)
