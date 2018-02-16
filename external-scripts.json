@@ -3,16 +3,13 @@
   "hubot-help",
   "hubot-google-translate",
   "hubot-pugme",
-  "hubot-maps",
   "hubot-redis-brain",
   "hubot-rules",
   "hubot-shipit",
-  "hubot-standup-alarm",
   "hubot-business-cat",
   "hubot-humanity",
   "hubot-fliptable",
   "hubot-shy",
   "hubot-suggest",
-  "hubot-vine",
   "hubot-insultos"
 ]
